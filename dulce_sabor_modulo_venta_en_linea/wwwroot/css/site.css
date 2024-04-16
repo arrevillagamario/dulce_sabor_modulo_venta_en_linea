@@ -1,5 +1,5 @@
 html {
-  font-size: 14px;
+    font-size: 90px;
 }
 
 @media (min-width: 768px) {
@@ -19,4 +19,19 @@ html {
 
 body {
   margin-bottom: 60px;
+
 }
+
+.item{
+    color:black;
+    text-decoration:none;
+    margin-right:0.6rem;
+
+}
+
+@media (hover: hover) {
+    .item:hover {
+        color: #861138;
+    }
+}
+

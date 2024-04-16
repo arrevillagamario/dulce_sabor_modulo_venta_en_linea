@@ -3,39 +3,44 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - dulce_sabor_modulo_venta_en_linea</title>
+    <title>@ViewData["Title"] - Dulce Sabor</title>
+    <link rel="icon" href="/img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/dulce_sabor_modulo_venta_en_linea.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
 </head>
-<body>
+<body style="font-family:Gabriola; font-size:25px">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img src="/img/GameIconsCupcake.svg" width="50px" height="50px" alt="Logo" /></a>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Dulce Sabor</a>
+                <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index"> <img src="/img/Logo.png" width="130px" height="130px" alt="Logo" /></a>
+                <a class="navbar-brand" style="font-size:2rem" asp-area="" asp-controller="Home" asp-action="Index">Dulce Sabor</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between ms-5">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Plato" asp-action="Index">Platos</a>
+                            <a class="item" asp-area="" asp-controller="Plato"  asp-action="Index">Platos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Combo" asp-action="Index">Combos</a>
+                            <a class="item " asp-area="" asp-controller="Combo" asp-action="Index">Combos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Promociones" asp-action="Index">Promociones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 ms-2" style="background-color:#5d0c27; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 ms-2" style="background-color:#5d0c27; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Crear">Registrarse</a>
+                            <a class="item" asp-area="" asp-controller="Promociones" asp-action="Index">Promociones</a>
                         </li>
 
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Crear">Registrarse</a>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -47,22 +52,27 @@
         </main>
     </div>
 
-    <footer class="border-top text-muted" style="background-color:white">
-        <div class="container d-flex align-content-center justify-content-between col-12">
-            <div>
-                <p>Liliana Aguilar</p>
-                <p>Mario Arrevillaga</p>
-                <p>Jairo Erazo</p>
-                <p>Gabriel Rendón</p>
-                <p> Kevin Rodríguez</p>
+    <footer class="border-top text-muted" >
+        <div class="container d-flex align-content-center justify-content-between col-12 mt-5">
+            <div class="row" style="color:#861138">
+                <div class="col-md-6">
+                    <p>Liliana Aguilar</p>
+                    <p>Mario Arrevillaga</p>
+                    <p>Jairo Erazo</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Gabriel Rendón</p>
+                    <p>Kevin Rodríguez</p>
+                </div>
             </div>
             <div>
                 <img src="/img/Facebook.svg" width="75px" height="80px" alt="Facebook">
                 <img src="/img/Instagram.svg" width="80px" height="80px" alt="Instagram">
                 <img src="/img/Twitter.svg" width="70px" height="80px" alt="X">
             </div>
-            <div>
-                <p style="max-width:17rem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula ipsum nec arcu lacinia, at interdum tortor finibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed pretium tristique ante, eget euismod nibh rhoncus sit amet. Nunc pretium posuere eros ac tincidunt. Sed ac pharetra leo, ac lobortis est. Morbi sed tortor dui. Proin id arcu tellus. Suspendisse sit amet velit orci.</p>
+            <div style="color:#861138">
+                <p style="max-width:17rem">Tower Bridge Rd, Londres, SE1 2UP</p>
+                <p style="max-width:17rem">+44 (0) 20 7407 9222</p>
             </div>
         </div>
     </footer>
