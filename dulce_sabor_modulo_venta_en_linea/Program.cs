@@ -1,7 +1,12 @@
+using dulce_sabor_modulo_venta_en_linea.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<DulceSaborContext>(options =>
+options.UseSqlServer("name=DefaultConnection"));
 
 var app = builder.Build();
 
