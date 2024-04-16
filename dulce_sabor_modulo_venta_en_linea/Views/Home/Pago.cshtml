@@ -1,0 +1,121 @@
+﻿<main style="background-color: rgb(218, 206, 190)" class="">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 my-5">
+                    <div class="container mt-5">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Método de Pago</h4>
+
+                                <h5>Total a pagar : $20</h5>
+                                <p class="card-text">Selecciona tu método de pago:</p>
+                                <button type="button"
+                                        class="btn btn-dark custom-button border-dark my-4"
+                                        data-toggle="modal"
+                                        data-target="#efectivoModal">
+                                    Pago en Efectivo
+                                </button>
+                                <button type="button"
+                                        class="btn btn-dark custom-button border-dark my-4"
+                                        data-toggle="modal"
+                                        data-target="#tarjetaModal">
+                                    Pago con Tarjeta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade"
+                         id="efectivoModal"
+                         tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="efectivoModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="efectivoModalLabel">
+                                        Pago en Efectivo
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="montoEfectivo">Monto:</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   id="montoEfectivo"
+                                                   placeholder="Ingrese el monto en efectivo" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-secondary"
+                                            data-dismiss="modal">
+                                        Cerrar
+                                    </button>
+                                    <button type="button" class="btn btn-dark">
+                                        Confirmar Pago
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade"
+                         id="tarjetaModal"
+                         tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="tarjetaModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="tarjetaModalLabel">
+                                        Pago con Tarjeta
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="numeroTarjeta">Número de Tarjeta:</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="numeroTarjeta"
+                                                   placeholder="Ingrese el número de tarjeta" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaExpiracion">Fecha de Expiración:</label>
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="fechaExpiracion"
+                                                   placeholder="MM/AA" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="codigoSeguridad">Código de Seguridad:</label>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   id="codigoSeguridad"
+                                                   placeholder="Ingrese el código de seguridad" />
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button"
+                                            class="btn btn-secondary"
+                                            data-dismiss="modal">
+                                        Cerrar
+                                    </button>
+                                    <button type="button" class="btn btn-dark">Pagar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</main>
