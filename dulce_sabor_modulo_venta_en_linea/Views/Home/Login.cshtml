@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<style>
+    body {
+        background-image: url(/img/cafe.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .card {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+</style>
+<div class="container">
+    <div class="row justify-content-center" style="padding-top: 120px;">
+        <div class="col-md-6">
+            <div class="card" style="border-radius: 10px;">
+                <div class="card-body">
+                    <div class="col-md-8 offset-md-2">
+                        <h2 class="text-center">Iniciar Sesión</h2>
+                        <img src="/img/imagenPerfil.jpg" alt="Imagen de perfil" class="profile-img" style="width: 50px; margin-left: 125px;">
+                        <form>
+                            <div class="form-group">
+                                <label for="Telefono">Teléfono:</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su teléfono">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contraseña">Contraseña:</label>
+                                <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
+                            </div>
+                            <button type="submit" class="btn" style="background-color: #5d0c27; color: antiquewhite; margin-left: 80px;">Iniciar Sesión</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
