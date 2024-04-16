@@ -41,10 +41,7 @@ public partial class DulceSaborContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("apellido");
-            entity.Property(e => e.Contraseña)
-                .HasMaxLength(16)
-                .IsUnicode(false)
-                .HasColumnName("contraseña");
+            entity.Property(e => e.Contraseña).HasColumnName("contraseña");
             entity.Property(e => e.Direccion)
                 .HasMaxLength(100)
                 .IsUnicode(false)
@@ -55,7 +52,7 @@ public partial class DulceSaborContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("nombre");
             entity.Property(e => e.Telefono)
-                .HasMaxLength(16)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("telefono");
         });
@@ -97,7 +94,6 @@ public partial class DulceSaborContext : DbContext
 
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
             entity.Property(e => e.ClienteId).HasColumnName("cliente_id");
-            entity.Property(e => e.DetallePedido).HasColumnName("detallePedido");
             entity.Property(e => e.Estado).HasColumnName("estado");
             entity.Property(e => e.Fecha).HasColumnName("fecha");
             entity.Property(e => e.Total)
@@ -107,6 +103,11 @@ public partial class DulceSaborContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("ubicacion");
+
+            entity.HasOne(d => d.Cliente).WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.ClienteId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PEDIDO_CLIENTE");
         });
 
         modelBuilder.Entity<PedidoDetalle>(entity =>
@@ -128,6 +129,11 @@ public partial class DulceSaborContext : DbContext
             entity.Property(e => e.Subtotal)
                 .HasColumnType("money")
                 .HasColumnName("subtotal");
+
+            entity.HasOne(d => d.Pedido).WithMany(p => p.PedidoDetalles)
+                .HasForeignKey(d => d.PedidoId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PEDIDO_DETALLE_PEDIDO");
         });
 
         modelBuilder.Entity<Plato>(entity =>

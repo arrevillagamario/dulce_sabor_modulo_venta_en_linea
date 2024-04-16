@@ -9,8 +9,6 @@ public partial class Pedido
 
     public int ClienteId { get; set; }
 
-    public int DetallePedido { get; set; }
-
     public string Ubicacion { get; set; } = null!;
 
     public decimal Total { get; set; }
@@ -18,4 +16,8 @@ public partial class Pedido
     public DateOnly Fecha { get; set; }
 
     public bool Estado { get; set; }
+
+    public virtual Cliente Cliente { get; set; } = null!;
+
+    public virtual ICollection<PedidoDetalle> PedidoDetalles { get; set; } = new List<PedidoDetalle>();
 }

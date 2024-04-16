@@ -18,4 +18,6 @@ public partial class Cliente
     public string Contraseña { get; set; } = null!;
 
     public DateOnly FechaCreacion { get; set; }
+
+    public virtual ICollection<Pedido> Pedidos { get; set; } = new List<Pedido>();
 }

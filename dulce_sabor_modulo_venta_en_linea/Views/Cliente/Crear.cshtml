@@ -1,4 +1,6 @@
-﻿@{
+﻿
+@model RegistroViewModel
+@{
     ViewData["Title"] = "Registrate";
 }
 <style>
@@ -23,25 +25,25 @@
                     <div class="col-md-8 offset-md-2">
                         <h2 class="text-center">Crear Usuario</h2>
                         <img src="/img/agregarUs.jpg" alt="Imagen de perfil" class="profile-img" style="width: 50px; margin-left: 125px;">
-                        <form>
+                        <form asp-action="Crear">
                             <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+                                <label asp-for="nombre">Nombre:</label>
+                                <input asp-for="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
                             </div>
                             <div class="form-group">
-                                <label for="apellido">Apellido:</label>
-                                <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido">
+                                <label asp-for="apellido">Apellido:</label>
+                                <input asp-for="apellido" type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido">
                             </div>
                             <div class="form-group">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion de su casa">
+                                <label asp-for="direccion">Direccion</label>
+                                <input asp-for="direccion" type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion de su casa">
                             </div><div class="form-group">
-                                <label for="telefono">Teléfono</label>
-                                <input type="text" class="form-control" id="telefono" placeholder="Ingrese su número de teléfono">
+                                <label asp-for="telefono">Teléfono</label>
+                                <input asp-for="telefono" type="tel" class="form-control" id="telefono" placeholder="Ingrese su número de teléfono">
                             </div>
                             <div class="form-group">
-                                <label for="contraseña">Contraseña:</label>
-                                <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
+                                <label asp-for="contraseña">Contraseña:</label>
+                                <input asp-for ="contraseña" type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
                             </div>
                             <button type="submit" class="btn" style="background-color: #5d0c27; color: antiquewhite; margin-left: 80px;">Crear Usuario</button>
 
