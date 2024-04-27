@@ -8,5 +8,10 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
         {
             return View();
         }
+
+        public IActionResult Historial()
+        {
+            return View();
+        }
     }
 }
