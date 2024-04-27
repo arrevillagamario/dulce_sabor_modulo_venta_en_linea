@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<Cliente> SignInManager
 
-<ul class="navbar-nav">
+<ul class="flex space-x-2">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
@@ -9,20 +9,18 @@
         </li>
         <li class="nav-item">
             <form class="form-inline" asp-action="logout" asp-controller="Cliente">
-                <button type="submit" class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px">
+                <button type="submit" class="text-white px-4 py-2 rounded-md hover:text-rose-950" style="background-color:#861138">
                     Logout
                 </button>
             </form>
         </li>
     }
     else
-    {
-
-        <li class="nav-item">
-                <a class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Login">Login</a>
+    {    <li class="nav-item">
+            <a class="text-white px-4 py-2 rounded-md hover:text-rose-950" style="background-color:#861138" asp-area="" asp-controller="Cliente" asp-action="Login">Login</a>
         </li>
         <li class="nav-item">
-                <a class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Crear">Registrarse</a>
+            <a class="text-white px-4 py-2 rounded-md hover:text-rose-950" style="background-color:#861138" asp-area="" asp-controller="Cliente" asp-action="Crear">Registrarse</a>
         </li>
     }
 </ul>
