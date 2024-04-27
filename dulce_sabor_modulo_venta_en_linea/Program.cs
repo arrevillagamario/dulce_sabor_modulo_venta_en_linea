@@ -11,7 +11,6 @@ builder.Services.AddDbContext<DulceSaborContext>(options =>
 options.UseSqlServer("name=DefaultConnection"));
 builder.Services.AddTransient<IRepositorioClientes, RepositorioClientes>();
 builder.Services.AddTransient<IUserStore<Cliente>, ClienteStore>();
-builder.Services.AddIdentityCore<Cliente>();
 builder.Services.AddTransient<SignInManager<Cliente>>();
 builder.Services.AddTransient<IAutenticacionCliente, AutenticacionCliente>();
 builder.Services.AddHttpContextAccessor();
@@ -24,6 +23,15 @@ builder.Services.AddAuthentication(options =>
 {
     opciones.LoginPath = "/cliente/login";
 });
+
+builder.Services.AddIdentityCore<Cliente>(opciones =>
+{
+    opciones.Password.RequireDigit = true;
+    opciones.Password.RequireLowercase = true;
+    opciones.Password.RequireUppercase = true;
+    opciones.Password.RequireNonAlphanumeric = true;
+
+}).AddErrorDescriber<MensajesErrorIdentity>();
 
 var app = builder.Build();
 

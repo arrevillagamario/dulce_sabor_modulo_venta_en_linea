@@ -32,11 +32,11 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
                 return View(model);
             }
 
-            var resultado = await _signIn.PasswordSignInAsync(model.telefono, model.contraseña, model.Recuerdame, lockoutOnFailure: false);
+            var resultado = await _signIn.PasswordSignInAsync(model.Telefono, model.Contraseña, model.Recuerdame, lockoutOnFailure: false);
 
             if (resultado.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Plato");
             }
             else
             {
@@ -73,7 +73,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
 
             if (resultado.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Plato");
             }
             else
             {
