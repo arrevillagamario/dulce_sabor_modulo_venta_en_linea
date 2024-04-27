@@ -16,5 +16,12 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
             var combo = await servicioGeneral.ObtenerCombos();
             return View(combo);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AgregarACarrito(int idProducto)
+        {
+            await servicioGeneral.AgregarComboDetalle(idProducto);
+            return View();
+        }
     }
 }

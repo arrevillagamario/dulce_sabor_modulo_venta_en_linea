@@ -32,11 +32,12 @@ public partial class DulceSaborContext : DbContext
     public virtual DbSet<Promocione> Promociones { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-PVK9BJ3\\SQLEXPRESS;Database=DulceSabor;Integrated Security=True;TrustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("name=DefaultConnection");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("Modern_Spanish_CI_AS");
+
         modelBuilder.Entity<CategoriasPlato>(entity =>
         {
             entity.HasKey(e => e.CategoriaId).HasName("PK__CATEGORI__DB875A4FFF90B59F");

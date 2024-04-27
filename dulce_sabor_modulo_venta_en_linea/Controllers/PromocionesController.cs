@@ -17,5 +17,12 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
 
             return View(promos);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AgregarACarrito(int idProducto)
+        {
+            await servicioGeneral.AgregarPromoDetalle(idProducto);
+            return View();
+        }
     }
 }

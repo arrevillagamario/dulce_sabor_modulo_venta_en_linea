@@ -69,10 +69,14 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
                 Telefono = model.telefono
             };
 
+            var recuerdame = false;
+
             var resultado = await _userManager.CreateAsync(cliente, password: model.contraseña);
 
             if (resultado.Succeeded)
             {
+
+                await _signIn.PasswordSignInAsync(cliente.Telefono, cliente.Contraseña, recuerdame, lockoutOnFailure: false);
                 return RedirectToAction("Index", "Plato");
             }
             else

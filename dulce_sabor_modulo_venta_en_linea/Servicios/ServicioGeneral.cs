@@ -7,11 +7,18 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
 
     public interface IServicioGeneral
     {
+        Task<int> AgregarComboDetalle(int productoId);
+        Task<int> AgregarPlatoDetalle(int productoId);
+        Task<int> AgregarPromoDetalle(int productoId);
+        Task CrearPedido();
         Task<Cliente> GetCliente();
+        Task<IEnumerable<Pedido>> HistorialPedidos();
         Task<IEnumerable<Combo>> ObtenerCombos();
         Task<IEnumerable<PedidoDetalle>> ObtenerDetalleDeVenta();
+        Task<int> ObtenerPedido();
         Task<IEnumerable<Plato>> ObtenerPlatos();
         Task<IEnumerable<Promocione>> ObtenerPromociones();
+        Task<bool> PedidoNuevo();
     }
     public class ServicioGeneral : IServicioGeneral
     {
@@ -87,6 +94,12 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
                                                .OrderByDescending(X => X.PedidoId)
                                                .FirstOrDefaultAsync();
 
+            if(pedido == null)
+            {
+                var nuevoPedido = CrearPedido();
+                return nuevoPedido.Id;
+            }
+
             int idPedido = pedido.PedidoId;
 
             return idPedido;
@@ -95,14 +108,19 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
 
         public async Task<int> AgregarPlatoDetalle(int productoId)
         {
+
             var producto = await _context.Platos.FindAsync(productoId);
             var idPedido = await ObtenerPedido();
             var pedido = await _context.Pedidos.FindAsync(idPedido);
+
 
             PedidoDetalle platoAgregado = new()
             {
                 PedidoId = pedido.PedidoId,
                 PlatoId = producto.PlatoId,
+                Cantidad = 1,
+                PrecioUnitario = producto.Precio,
+                Subtotal = producto.Precio,
                 Pedido = pedido,
                 Plato = producto,
             };
@@ -127,6 +145,9 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
             {
                 PedidoId = pedido.PedidoId,
                 ComboId = producto.ComboId,
+                Cantidad = 1,
+                PrecioUnitario = producto.Precio,
+                Subtotal = producto.Precio,
                 Pedido = pedido,
                 Combo = producto,
 
@@ -152,6 +173,9 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
             {
                 PedidoId = pedido.PedidoId,
                 PromoId = prducto.PromocionId,
+                Cantidad = 1,
+                PrecioUnitario = prducto.Descuento,
+                Subtotal = prducto.Descuento,
                 Pedido = pedido,
                 Promo = prducto,
             };
@@ -186,6 +210,32 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
             return detallesDePedido;
         }
 
+        public async Task<bool> PedidoNuevo()
+        {
+            var cliente = GetCliente();
+
+            var pedido = await _context.Pedidos.Where(x => x.ClienteId == cliente.Id && x.IdEstado == 1).FirstOrDefaultAsync();
+
+            if (pedido == null || pedido.IdEstado == 1)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        public async Task<IEnumerable<Pedido>> HistorialPedidos()
+        {
+            var cliente = GetCliente();
+            var pedidosHistorico = await _context.Pedidos.Include(x => x.PedidoDetalles)
+                                                         .Where(x => x.ClienteId == cliente.Id && x.IdEstado > 1)
+                                                         .ToListAsync();
+
+            return pedidosHistorico;
+
+
+        }
 
     }
 }

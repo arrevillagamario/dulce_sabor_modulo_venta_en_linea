@@ -32,10 +32,13 @@
                                            @item.Descripcion
                                         </p>
                                         <div class="d-flex justify-content-center">
-                                            <a href="#" type="button" style="background-color:#861138; color:white" class="btn btn-light">
-                                                Add
-                                                <i class="bi bi-cart4"></i>
-                                            </a>
+                                            <form method="post" asp-action="AgregarACarrito">
+                                                <input type="hidden" value="@item.ComboId" />
+                                                <button type="submit" style="background-color:#861138; color:white" class="btn btn-light">
+                                                    Add
+                                                    <i class="bi bi-cart4"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
