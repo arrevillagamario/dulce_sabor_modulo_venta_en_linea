@@ -1,18 +1,20 @@
-﻿
-@model RegistroViewModel
+﻿@model RegistroViewModel
 @{
     ViewData["Title"] = "Registrate";
 }
 <style>
     body {
-        background-image: url(/img/Banner_promos.png);
+        background-image: url(/img/fondo.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
 
     .card {
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: #bb8b90;
+        color:white;
+        margin-bottom:100px;
+
     }
 </style>
 
@@ -24,7 +26,6 @@
                 <div class="card-body">
                     <div class="col-md-8 offset-md-2">
                         <h2 class="text-center">Crear Usuario</h2>
-                        <img src="/img/agregarUs.jpg" alt="Imagen de perfil" class="profile-img" style="width: 50px; margin-left: 125px;">
                         <form asp-action="Crear">
                             <div class="form-group">
                                 <label asp-for="nombre">Nombre:</label>
@@ -43,9 +44,12 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="contraseña">Contraseña:</label>
-                                <input asp-for ="contraseña" type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
+                                <input asp-for="contraseña" type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
                             </div>
-                            <button type="submit" class="btn" style="background-color: #5d0c27; color: antiquewhite; margin-left: 80px;">Crear Usuario</button>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn" style="background-color: #5d0c27; color: antiquewhite;  margin-top:30px">Crear Usuario</button>
+
+                            </div>
 
                         </form>
                     </div>
