@@ -5,7 +5,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
 {
     public interface IAutenticacionCliente
     {
-
+        int GetClienteId();
     }
 
     public class AutenticacionCliente : IAutenticacionCliente

@@ -17,5 +17,7 @@ public partial class Combo
 
     public string? Imagen { get; set; }
 
+    public virtual ICollection<PedidoDetalle> PedidoDetalles { get; set; } = new List<PedidoDetalle>();
+
     public virtual ICollection<Plato> Platos { get; set; } = new List<Plato>();
 }

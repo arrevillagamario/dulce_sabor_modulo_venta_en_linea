@@ -8,6 +8,13 @@
             <span class="nav-link text-dark">Hola, @User.Identity.Name</span>
         </li>
         <li class="nav-item">
+            <button type="submit" class="text-white px-4 py-2 rounded-md hover:text-rose-950" style="background-color:#861138">
+               <a asp-action="Index" asp-controller="Pedido">
+                   Carrito de Compra
+               </a>
+            </button>
+        </li>
+        <li class="nav-item">
             <form class="form-inline" asp-action="logout" asp-controller="Cliente">
                 <button type="submit" class="text-white px-4 py-2 rounded-md hover:text-rose-950" style="background-color:#861138">
                     Logout

@@ -13,11 +13,19 @@ public partial class PedidoDetalle
 
     public int? ComboId { get; set; }
 
-    public int Cantidad { get; set; }
+    public int? PromoId { get; set; }
 
-    public decimal PrecioUnitario { get; set; }
+    public int? Cantidad { get; set; }
 
-    public decimal Subtotal { get; set; }
+    public decimal? PrecioUnitario { get; set; }
+
+    public decimal? Subtotal { get; set; }
+
+    public virtual Combo? Combo { get; set; }
 
     public virtual Pedido Pedido { get; set; } = null!;
+
+    public virtual Plato? Plato { get; set; }
+
+    public virtual Promocione? Promo { get; set; }
 }

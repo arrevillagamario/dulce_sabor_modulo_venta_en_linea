@@ -135,8 +135,10 @@ public partial class DulceSaborContext : DbContext
 
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");
             entity.Property(e => e.ClienteId).HasColumnName("cliente_id");
-            entity.Property(e => e.Estado).HasColumnName("estado");
-            entity.Property(e => e.Fecha).HasColumnName("fecha");
+            entity.Property(e => e.Fecha)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha");
+            entity.Property(e => e.IdEstado).HasColumnName("id_estado");
             entity.Property(e => e.Total)
                 .HasColumnType("money")
                 .HasColumnName("total");
@@ -149,6 +151,11 @@ public partial class DulceSaborContext : DbContext
                 .HasForeignKey(d => d.ClienteId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PEDIDO_CLIENTE");
+
+            entity.HasOne(d => d.IdEstadoNavigation).WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.IdEstado)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PEDIDO_ESTADOPEDIDO");
         });
 
         modelBuilder.Entity<PedidoDetalle>(entity =>
@@ -167,14 +174,27 @@ public partial class DulceSaborContext : DbContext
             entity.Property(e => e.PrecioUnitario)
                 .HasColumnType("money")
                 .HasColumnName("precioUnitario");
+            entity.Property(e => e.PromoId).HasColumnName("promo_id");
             entity.Property(e => e.Subtotal)
                 .HasColumnType("money")
                 .HasColumnName("subtotal");
+
+            entity.HasOne(d => d.Combo).WithMany(p => p.PedidoDetalles)
+                .HasForeignKey(d => d.ComboId)
+                .HasConstraintName("FK_PEDIDO_DETALLE_COMBOS");
 
             entity.HasOne(d => d.Pedido).WithMany(p => p.PedidoDetalles)
                 .HasForeignKey(d => d.PedidoId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PEDIDO_DETALLE_PEDIDO");
+
+            entity.HasOne(d => d.Plato).WithMany(p => p.PedidoDetalles)
+                .HasForeignKey(d => d.PlatoId)
+                .HasConstraintName("FK_PEDIDO_DETALLE_PLATOS");
+
+            entity.HasOne(d => d.Promo).WithMany(p => p.PedidoDetalles)
+                .HasForeignKey(d => d.PromoId)
+                .HasConstraintName("FK_PEDIDO_DETALLE_PROMOCIONES");
         });
 
         modelBuilder.Entity<Plato>(entity =>

@@ -1,76 +1,75 @@
-﻿@{
+﻿@model CarritoViewModel;
+
+@{
     ViewData["Title"] = "Pedido";
 }
 <style>
-    body {
-        background-image: url(/img/fondo.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
+  body {
+    background-image: url(/img/fondo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
 
-    .card {
-        background-color: #bb8b90;
-        color: white;
-        margin-bottom: 100px;
+  .card {
+    background-color: #bb8b90;
+    color: white;
+    margin-bottom: 100px;
+  }
 </style>
 <div class="container">
-    <div class="row justify-content-center" style="padding-top: 120px;">
-        <div class="col-md-8">
-            <div class="card" style="border-radius: 10px;">
-                <div class="mt-3 mb-3">
-                    <div class="px-5">
+  <div class="row justify-content-center" style="padding-top: 120px;">
+    <div class="col-md-8">
+            @if (Model.Detalles != null && Model.Detalles.Any())
+            {
+                @foreach (var item in Model.Detalles)
+                {
+                  <div class="card" style="border-radius: 10px;">
+                    <div class="mt-3 mb-3">
+                      <div class="px-5">
                         <h2 class="text-center text-6xl font-bold">Mi pedido</h2>
                         <h3 class="mt-4 mb-5 text-5xl"># Orden</h3>
                         <div class="flex items-center bg-white px-5 space-x-3 py-7 rounded-md">
-
-                            <img src="/img/Carousell2.png" width="200px" height="200px" alt="producto a comprar" />
-
-                            <div class="mt-3 h-50">
-
-                                <p class="text-black max-h-40 overflow-scroll mt-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque risus enim, sit amet posuere tellus tempus id. Sed tristique, lectus sed semper tempus, augue nisl consequat nibh, ac vestibulum arcu orci scelerisque orci. Pellentesque aliquam lorem urna, vel dictum eros sollicitudin vel. Curabitur pharetra lorem sit amet sapien tincidunt pharetra. Duis faucibus finibus mauris, in interdum turpis varius vitae. Cras vulputate urna ac dictum commodo. Phasellus eget tellus tellus. Aliquam ornare quis erat ut pulvinar. Curabitur aliquam elementum enim, eget pellentesque tortor fringilla pellentesque. Vestibulum vulputate eget magna ut malesuada.
-
-                                    Fusce mattis metus sed sem condimentum iaculis. Praesent vitae massa risus. Curabitur elementum elementum rutrum. In id urna nec ex feugiat vulputate. Integer egestas consequat laoreet. Proin ut efficitur est, et egestas sapien. Donec vitae nunc at velit fringilla convallis eget id mi. Quisque vitae eleifend enim, quis accumsan nisl. Donec ut sapien aliquet, euismod sem id, elementum ante. Pellentesque id accumsan elit, at tempus erat. Ut sed rutrum arcu.
-
-                                    In ut justo nulla. Mauris vel elit eget lectus scelerisque ullamcorper id volutpat nibh. Duis hendrerit nulla orci. Fusce eu rutrum libero. Curabitur pulvinar risus ex, id consectetur risus ultricies in. Sed egestas cursus nisi sit amet varius. Pellentesque consectetur a enim vestibulum consectetur. Curabitur condimentum purus non vehicula euismod. Praesent auctor risus diam, in vehicula massa dignissim ut. In hac habitasse platea dictumst. Etiam sit amet risus vel dolor lacinia aliquet eu vel massa. In sed odio malesuada, sagittis nisl vel, consectetur lorem. Vestibulum non ultricies lacus. Pellentesque in turpis eget tellus posuere vehicula feugiat sit amet erat. Etiam vulputate molestie scelerisque.
-
-                                    Quisque id mollis lectus, ac aliquam dolor. Donec ac augue eu nisl consequat tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent iaculis tincidunt aliquet. Integer nec ex convallis, aliquam mauris nec, laoreet mi. Nulla pharetra tempor urna vestibulum lobortis. Nam sed elit a eros faucibus accumsan. Morbi volutpat interdum neque, id pretium tellus maximus id. Duis mattis, enim eu tincidunt finibus, nunc magna congue nisl, a elementum urna nulla quis nibh. Suspendisse dapibus magna nec dui fermentum varius. Aliquam vitae orci quam. Donec vestibulum, justo non condimentum volutpat, eros lorem convallis orci, sed vestibulum urna purus quis dolor. Etiam at dapibus enim, placerat gravida sem. Ut venenatis vestibulum felis, id consectetur eros tempor eget. Suspendisse congue posuere neque vitae faucibus. Donec elementum nisl id ante semper feugiat.
-
-                                    Ut ut faucibus tortor. Quisque a tortor dignissim, ornare ligula a, porttitor magna. Etiam facilisis, mi non scelerisque porta, sem orci venenatis lorem, et pellentesque tortor nunc sed diam. Suspendisse pellentesque, sapien eu imperdiet tincidunt, diam sapien malesuada ligula, a sodales tellus augue non urna. Aliquam lacinia suscipit leo, nec mattis nibh cursus sit amet. Suspendisse viverra ipsum eu orci suscipit, ac suscipit risus condimentum. Nunc lobortis risus quis dolor vulputate, ac condimentum nunc rhoncus. Nam lobortis maximus ipsum quis mollis. Fusce vel felis vitae neque ultricies tincidunt. Vivamus pharetra libero augue, sed efficitur enim porta eget.
-                                </p>
-                            </div>
+                          <img src="/img/Carousell2.png" width="200px" height="200px" alt="producto a comprar" />
+                          <div class="mt-3 h-50">
+                            <p class="text-black max-h-40 overflow-scroll mt-4">
+                            </p>
+                          </div>
                         </div>
                         <div class="flex justify-end mt-3 ">
-                            <p class="text-4xl font-bold">$10.00</p>
+                          <p class="text-4xl font-bold">$10.00</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="w-100 py-2 rounded-md font-bold" style="background-color: #5d0c27; color: antiquewhite;  margin-top:30px">Pagar</button>
-
+                          <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="w-100 py-2 rounded-md font-bold" style="background-color: #5d0c27; color: antiquewhite; margin-top:30px">Pagar</button>
                         </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                  </div>
+                }
+            }
+            else
+            {
+            <p class="text-center text-3xl mt-5">Tu carrito está vacío. ¡Agrega productos para realizar tu pedido!</p>
+            }
     </div>
+  </div>
 </div>
 
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header ">
-                <h1 class="modal-title text-3xl text-center" id="exampleModalLabel">Pagar</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body space-y-3 px-5">
-                <p class="text-4xl">Total a pagar: $10.00</p>
-                <p class="text-2xl" style="color:#5d0c27">Seleccione su método de pago:</p>
-            </div>
-           <div class="modal-footer px-5 space-y-3 py-3">
-                <button type="button" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold">Efectivo</button>
-                <button type="button" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold">Tarjeta</button
-            </div>
-        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h1 class="modal-title text-3xl text-center" id="exampleModalLabel">Pagar</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body space-y-3 px-5">
+        <p class="text-4xl">Total a pagar: $10.00</p>
+        <p class="text-2xl" style="color:#5d0c27">Seleccione su método de pago:</p>
+      </div>
+      <div class="modal-footer px-5 space-y-3 py-3">
+        <button type="button" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold">Efectivo</button>
+        <button type="button" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold">Tarjeta</button>
+      </div>
     </div>
+  </div>
 </div>

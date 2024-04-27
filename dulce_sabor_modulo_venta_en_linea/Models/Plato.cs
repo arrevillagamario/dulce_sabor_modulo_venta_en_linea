@@ -23,6 +23,8 @@ public partial class Plato
 
     public virtual CategoriasPlato? Categoria { get; set; }
 
+    public virtual ICollection<PedidoDetalle> PedidoDetalles { get; set; } = new List<PedidoDetalle>();
+
     public virtual ICollection<Combo> Combos { get; set; } = new List<Combo>();
 
     public virtual ICollection<Promocione> Promocions { get; set; } = new List<Promocione>();

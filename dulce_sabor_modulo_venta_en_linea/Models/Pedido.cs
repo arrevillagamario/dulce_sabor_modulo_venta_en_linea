@@ -9,15 +9,17 @@ public partial class Pedido
 
     public int ClienteId { get; set; }
 
-    public string Ubicacion { get; set; } = null!;
+    public string? Ubicacion { get; set; }
 
-    public decimal Total { get; set; }
+    public decimal? Total { get; set; }
 
-    public DateOnly Fecha { get; set; }
+    public DateTime Fecha { get; set; }
 
-    public bool Estado { get; set; }
+    public int IdEstado { get; set; }
 
     public virtual Cliente Cliente { get; set; } = null!;
+
+    public virtual Estadopedido IdEstadoNavigation { get; set; } = null!;
 
     public virtual ICollection<PedidoDetalle> PedidoDetalles { get; set; } = new List<PedidoDetalle>();
 }
