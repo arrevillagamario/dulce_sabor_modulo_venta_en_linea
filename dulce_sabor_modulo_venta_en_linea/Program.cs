@@ -12,6 +12,18 @@ options.UseSqlServer("name=DefaultConnection"));
 builder.Services.AddTransient<IRepositorioClientes, RepositorioClientes>();
 builder.Services.AddTransient<IUserStore<Cliente>, ClienteStore>();
 builder.Services.AddIdentityCore<Cliente>();
+builder.Services.AddTransient<SignInManager<Cliente>>();
+builder.Services.AddTransient<IAutenticacionCliente, AutenticacionCliente>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
+}).AddCookie(IdentityConstants.ApplicationScheme, opciones =>
+{
+    opciones.LoginPath = "/cliente/login";
+});
 
 var app = builder.Build();
 

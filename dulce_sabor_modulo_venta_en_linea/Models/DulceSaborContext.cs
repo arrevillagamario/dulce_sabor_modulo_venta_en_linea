@@ -21,6 +21,8 @@ public partial class DulceSaborContext : DbContext
 
     public virtual DbSet<CombosPlato> CombosPlatos { get; set; }
 
+    public virtual DbSet<Estadopedido> Estadopedidos { get; set; }
+
     public virtual DbSet<Pedido> Pedidos { get; set; }
 
     public virtual DbSet<PedidoDetalle> PedidoDetalles { get; set; }
@@ -28,7 +30,8 @@ public partial class DulceSaborContext : DbContext
     public virtual DbSet<Plato> Platos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("name=DefaultConnection");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-PVK9BJ3\\SQLEXPRESS;Database=DulceSabor;Integrated Security=True;TrustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -86,6 +89,17 @@ public partial class DulceSaborContext : DbContext
 
             entity.Property(e => e.ComboId).HasColumnName("combo_id");
             entity.Property(e => e.PlatoId).HasColumnName("plato_id");
+        });
+
+        modelBuilder.Entity<Estadopedido>(entity =>
+        {
+            entity.HasKey(e => e.IdEstado);
+
+            entity.ToTable("ESTADOPEDIDO");
+
+            entity.Property(e => e.Estado)
+                .HasMaxLength(50)
+                .IsUnicode(false);
         });
 
         modelBuilder.Entity<Pedido>(entity =>

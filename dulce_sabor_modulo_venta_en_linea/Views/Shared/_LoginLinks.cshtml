@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Cliente> SignInManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <span class="nav-link text-dark">Hola, @User.Identity.Name</span>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-action="logout" asp-controller="Cliente">
+                <button type="submit" class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px">
+                    Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+
+        <li class="nav-item">
+                <a class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Login">Login</a>
+        </li>
+        <li class="nav-item">
+                <a class="nav-link px-3 ms-2" style="background-color:#861138; color:white; border-radius:10px" asp-area="" asp-controller="Cliente" asp-action="Crear">Registrarse</a>
+        </li>
+    }
+</ul>
