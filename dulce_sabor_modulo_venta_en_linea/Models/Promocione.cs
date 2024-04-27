@@ -3,17 +3,19 @@ using System.Collections.Generic;
 
 namespace dulce_sabor_modulo_venta_en_linea.Models;
 
-public partial class Combo
+public partial class Promocione
 {
-    public int ComboId { get; set; }
+    public int PromocionId { get; set; }
 
     public string? Nombre { get; set; }
 
     public string? Descripcion { get; set; }
 
-    public decimal? Precio { get; set; }
+    public decimal? Descuento { get; set; }
 
-    public bool? Disponible { get; set; }
+    public DateOnly? FechaInicio { get; set; }
+
+    public DateOnly? FechaFin { get; set; }
 
     public string? Imagen { get; set; }
 

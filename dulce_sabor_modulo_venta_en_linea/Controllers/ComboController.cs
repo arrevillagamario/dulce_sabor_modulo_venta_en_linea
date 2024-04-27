@@ -1,12 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using dulce_sabor_modulo_venta_en_linea.Servicios;
+using Microsoft.AspNetCore.Mvc;
 
 namespace dulce_sabor_modulo_venta_en_linea.Controllers
 {
     public class ComboController : Controller
     {
-        public IActionResult Index()
+        private readonly IServicioGeneral servicioGeneral;
+
+        public ComboController(IServicioGeneral servicioGeneral)
         {
-            return View();
+            this.servicioGeneral = servicioGeneral;
+        }
+        public async Task<IActionResult> Index()
+        {
+            var combo = await servicioGeneral.ObtenerCombos();
+            return View(combo);
         }
     }
 }

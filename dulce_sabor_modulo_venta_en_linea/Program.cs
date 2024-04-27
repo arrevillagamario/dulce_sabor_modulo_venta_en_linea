@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DulceSaborContext>(options =>
 options.UseSqlServer("name=DefaultConnection"));
 builder.Services.AddTransient<IRepositorioClientes, RepositorioClientes>();
+builder.Services.AddTransient<IServicioGeneral, ServicioGeneral>();
 builder.Services.AddTransient<IUserStore<Cliente>, ClienteStore>();
 builder.Services.AddTransient<SignInManager<Cliente>>();
 builder.Services.AddTransient<IAutenticacionCliente, AutenticacionCliente>();

@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using dulce_sabor_modulo_venta_en_linea.Servicios;
+using Microsoft.AspNetCore.Mvc;
 
 namespace dulce_sabor_modulo_venta_en_linea.Controllers
 {
     public class PlatoController : Controller
     {
-        public IActionResult Index()
+        private readonly IServicioGeneral servicioGeneral;
+
+        public PlatoController(IServicioGeneral servicioGeneral)
         {
-            return View();
+            this.servicioGeneral = servicioGeneral;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var platos = await servicioGeneral.ObtenerPlatos();
+
+            return View(platos);
         }
     }
 }
