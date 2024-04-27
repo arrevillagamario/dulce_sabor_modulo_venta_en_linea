@@ -22,6 +22,24 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
         {
             return View();
         }
+        public IActionResult Productos()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Crear()
+        {
+            return View();
+        }
+        public IActionResult Pago() {
+            return View();
+        }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
