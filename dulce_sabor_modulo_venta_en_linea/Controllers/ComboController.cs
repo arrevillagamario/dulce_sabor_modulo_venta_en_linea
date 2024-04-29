@@ -17,11 +17,16 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
             return View(combo);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AgregarACarrito(int idProducto)
+        public IActionResult AgregarACarrito()
         {
-            await servicioGeneral.AgregarComboDetalle(idProducto);
-            return View();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AgregarACarrito(int combo)
+        {
+            await servicioGeneral.AgregarComboDetalle(combo);
+            return RedirectToAction("Index");
         }
     }
 }

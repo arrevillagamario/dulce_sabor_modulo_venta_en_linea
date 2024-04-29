@@ -3,7 +3,9 @@
     public class CarritoViewModel
     {
         public Cliente? Cliente { get; set; }
-        public IEnumerable<PedidoDetalle> Detalles { get; set; }
+
+        public int? Pedido { get; set; }
+        public IEnumerable<PedidoDetalle>? Detalles { get; set; }
 
         public decimal? PrecioTotal { get; set; }
     }

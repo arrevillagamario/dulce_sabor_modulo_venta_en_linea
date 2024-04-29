@@ -36,8 +36,6 @@ public partial class DulceSaborContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseCollation("Modern_Spanish_CI_AS");
-
         modelBuilder.Entity<CategoriasPlato>(entity =>
         {
             entity.HasKey(e => e.CategoriaId).HasName("PK__CATEGORI__DB875A4FFF90B59F");
@@ -165,9 +163,7 @@ public partial class DulceSaborContext : DbContext
 
             entity.ToTable("PEDIDO_DETALLE");
 
-            entity.Property(e => e.DetallePedidoId)
-                .ValueGeneratedNever()
-                .HasColumnName("detallePedido_id");
+            entity.Property(e => e.DetallePedidoId).HasColumnName("detallePedido_id");
             entity.Property(e => e.Cantidad).HasColumnName("cantidad");
             entity.Property(e => e.ComboId).HasColumnName("combo_id");
             entity.Property(e => e.PedidoId).HasColumnName("pedido_id");

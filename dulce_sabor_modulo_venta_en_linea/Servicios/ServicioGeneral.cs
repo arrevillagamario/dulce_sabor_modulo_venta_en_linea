@@ -18,6 +18,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
         Task<int> ObtenerPedido();
         Task<IEnumerable<Plato>> ObtenerPlatos();
         Task<IEnumerable<Promocione>> ObtenerPromociones();
+        Task<Pedido> PagarPedido(decimal total, int idPedido);
         Task<bool> PedidoNuevo();
     }
     public class ServicioGeneral : IServicioGeneral
@@ -109,11 +110,11 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
         public async Task<int> AgregarPlatoDetalle(int productoId)
         {
 
-            var producto = await _context.Platos.FindAsync(productoId);
-            var idPedido = await ObtenerPedido();
-            var pedido = await _context.Pedidos.FindAsync(idPedido);
+            var producto = await _context.Platos.Where(z => z.PlatoId == productoId).FirstOrDefaultAsync();
+            int idPedido = await ObtenerPedido();
+            var pedido =  await _context.Pedidos.Where(x => x.PedidoId == idPedido).FirstOrDefaultAsync();
 
-
+ 
             PedidoDetalle platoAgregado = new()
             {
                 PedidoId = pedido.PedidoId,
@@ -235,6 +236,27 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
             return pedidosHistorico;
 
 
+        }
+
+        public async Task<Pedido> PagarPedido (decimal total, int idPedido)
+        {
+            var pedido = await _context.Pedidos.FindAsync(idPedido);
+
+            var nuevoPedido = new Pedido()
+            {
+                ClienteId = pedido.ClienteId,
+                PedidoId = idPedido,
+                PedidoDetalles = pedido.PedidoDetalles,
+                Fecha = pedido.Fecha,
+                Ubicacion = "unLugar",
+                Total = total,
+                IdEstado = 3,
+            };
+
+             _context.Pedidos.Update(nuevoPedido);
+            await _context.SaveChangesAsync();
+
+            return pedido;
         }
 
     }

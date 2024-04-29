@@ -1,9 +1,13 @@
 using dulce_sabor_modulo_venta_en_linea.Models;
 using dulce_sabor_modulo_venta_en_linea.Servicios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var politicaUsuariosAutenticados = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .Build();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

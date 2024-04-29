@@ -19,6 +19,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
         public async Task<IActionResult> Index()
         {
             var productosEnCarrito = await _servicioGeneral.ObtenerDetalleDeVenta();
+            var idPedido = await _servicioGeneral.ObtenerPedido();
 
 
             if (productosEnCarrito == null || productosEnCarrito.Count() == 0)
@@ -27,6 +28,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
                 var carritoVacio = new CarritoViewModel
                 {
                     Cliente = await _servicioGeneral.GetCliente(),
+                    Pedido = idPedido,
                     Detalles = null,
                     PrecioTotal = 0,
                 };
@@ -39,14 +41,24 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
                 .Select(x => x.Plato?.Precio ?? 0 + x.Combo?.Precio ?? 0 + x.Promo?.Descuento ?? 0)
                 .Sum();
 
+
             var carrito = new CarritoViewModel
             {
                 Cliente = await _servicioGeneral.GetCliente(),
+                Pedido = idPedido,
                 Detalles = productosEnCarrito,
                 PrecioTotal = totalPrecio,
             };
 
             return View(carrito);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Pago (decimal aPagar, int pedido)
+        {
+            _servicioGeneral.PagarPedido(aPagar, pedido);
+
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Historial()
