@@ -1,4 +1,5 @@
 ﻿using dulce_sabor_modulo_venta_en_linea.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -10,7 +11,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
         Task<int> AgregarComboDetalle(int productoId);
         Task<int> AgregarPlatoDetalle(int productoId);
         Task<int> AgregarPromoDetalle(int productoId);
-        Task CrearPedido();
+        Task<Pedido> CrearPedido();
         Task<Cliente> GetCliente();
         Task<IEnumerable<Pedido>> HistorialPedidos();
         Task<IEnumerable<Combo>> ObtenerCombos();
@@ -18,7 +19,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
         Task<int> ObtenerPedido();
         Task<IEnumerable<Plato>> ObtenerPlatos();
         Task<IEnumerable<Promocione>> ObtenerPromociones();
-        Task<Pedido> PagarPedido(decimal total, int idPedido);
+        Task<Pedido> PagarPedido(decimal total, int idPedido, string direccion);
         Task<bool> PedidoNuevo();
     }
     public class ServicioGeneral : IServicioGeneral
@@ -72,7 +73,7 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
         }
 
 
-        public async Task CrearPedido()
+        public async Task<Pedido> CrearPedido()
         {
             int idCliente = _autenticacion.GetClienteId();
 
@@ -85,6 +86,8 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
 
             await _context.AddAsync(nuevoPedido);
             await _context.SaveChangesAsync();
+
+            return nuevoPedido;
         }
 
         public async Task<int> ObtenerPedido()
@@ -95,15 +98,16 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
                                                .OrderByDescending(X => X.PedidoId)
                                                .FirstOrDefaultAsync();
 
-            if(pedido == null)
+            if(pedido is not null)
             {
-                var nuevoPedido = CrearPedido();
-                return nuevoPedido.Id;
+                int idPedido = pedido.PedidoId;
+
+                return idPedido;
             }
 
-            int idPedido = pedido.PedidoId;
-
-            return idPedido;
+            var nuevoPedido = await CrearPedido();
+            return nuevoPedido.PedidoId;
+            
         }
 
 
@@ -238,25 +242,21 @@ namespace dulce_sabor_modulo_venta_en_linea.Servicios
 
         }
 
-        public async Task<Pedido> PagarPedido (decimal total, int idPedido)
+        public async Task<Pedido> PagarPedido (decimal total, int idPedido, string direccion)
         {
-            var pedido = await _context.Pedidos.FindAsync(idPedido);
 
-            var nuevoPedido = new Pedido()
-            {
-                ClienteId = pedido.ClienteId,
-                PedidoId = idPedido,
-                PedidoDetalles = pedido.PedidoDetalles,
-                Fecha = pedido.Fecha,
-                Ubicacion = "unLugar",
-                Total = total,
-                IdEstado = 3,
-            };
+            var pedido = await _context.Pedidos.Where(x => x.PedidoId == idPedido).SingleOrDefaultAsync();
 
-             _context.Pedidos.Update(nuevoPedido);
+            pedido.IdEstado = 3;
+            pedido.Ubicacion = direccion;
+            pedido.Total = total;
+
+             _context.Pedidos.Update(pedido);
             await _context.SaveChangesAsync();
 
             return pedido;
+
+            
         }
 
     }

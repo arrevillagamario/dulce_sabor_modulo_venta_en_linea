@@ -54,9 +54,9 @@ namespace dulce_sabor_modulo_venta_en_linea.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Pago (decimal aPagar, int pedido)
+        public async Task<IActionResult> Pago (decimal aPagar, int pedido, string direccion)
         {
-            _servicioGeneral.PagarPedido(aPagar, pedido);
+            await _servicioGeneral.PagarPedido(aPagar, pedido, direccion);
 
             return RedirectToAction("Index");
         }

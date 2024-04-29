@@ -27,7 +27,7 @@
                         <div class="px-5">
                             <h2 class="text-center text-6xl font-bold">Mi pedido</h2>
                             <h3 class="mt-4 mb-5 text-5xl"># Orden</h3>
-                           <div class="overflow-scroll">
+                           <div>
                                 @foreach (var item in Model.Detalles)
                                 {
                                     <div class="flex items-center bg-white px-5 space-x-3 py-7 rounded-md">
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="flex justify-end mt-3 ">
-                                        <p class="text-4xl font-bold">@item.Subtotal</p>
+                                        <p class="text-4xl font-bold"> Precio $@item.Subtotal</p>
                                     </div>
                                 }
                            </div>
@@ -70,14 +70,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body space-y-3 px-5">
-        <p class="text-4xl">Total a pagar: $@Model.PrecioTotal</p>
+        <p class="text-4xl">Total a pagar: $ @Model.PrecioTotal</p>
         <p class="text-2xl" style="color:#5d0c27">Seleccione su método de pago:</p>
       </div>
-      <form method="post" asp-action="Pago" class="modal-footer px-5 space-y-3 py-3">
-          <input type="hidden" name="aPagar" value="@Model.PrecioTotal"/>
-          <input type="hidden" name="pedido" value="@Model.Pedido" />
-        <button type="submit" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold">Efectivo</button>
-        <button type="submit" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold">Tarjeta</button>
+      <form method="post" asp-action="Pago" class="modal-footer px-5 space-y-3 py-3 justify-content-center">
+           
+          
+                        <label asp-for="Direccion">Ingrese su dirección para recibir su pedido</label>
+                        <input class="form-control" asp-for="Direccion" type="text" name="direccion" />
+
+                        <input type="hidden" name="aPagar" value="@Model.PrecioTotal" />
+                        <input type="hidden" name="pedido" value="@Model.Pedido" />
+                        <button type="submit" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold mb-3">Efectivo</button>
+                        <button type="submit" style="background-color: #5d0c27; color: antiquewhite;" class="w-100 py-2 rounded-md font-bold mb-3">Tarjeta</button>
+
       </form>
     </div>
   </div>
